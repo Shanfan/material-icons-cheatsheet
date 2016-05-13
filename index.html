@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Material Icons Cheatsheet</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <th>
+          Name
+        </th>
+        <th>
+          Icon
+        </th>
+        <th>
+          HTML (Modern)
+        </th>
+        <th>
+          HTML (IE9 and below)
+        </th>
+        <th>
+          CSS
+        </th>
+        <th>
+          Copy-Paste in Drawing Tool
+        </th>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+    <script type="text/javascript">
+      $(function(){
+        $.ajax({
+          url: "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/codepoints",
+          type: 'GET',
+          dataType: 'text',
+          success: function(data) {
+            data = txtToJSON(data);
+            showTable(data);
+          }
+        });
+      });
+
+      var txtToJSON = function(txt){
+        var pairArray = txt.split('\n');
+        var data = [];
+
+        pairArray.forEach(function(d){
+          var pair = d.split(' ');
+          data.push({'name': pair[0], 'code': pair[1]});
+        });
+        return data.slice(0, data.length - 1);
+      }
+
+      var showTable = function(dataArray){
+        dataArray.forEach(function(d){
+          var tr = '<tr>';
+
+          tr += '<td>' + d.name + '</td>';
+          tr += '<td><i class="material-icons">' + d.name + '</i></td>';
+          tr += '<td><textarea class="codesnippet">' + '&#60;' + 'i class="material-icons">' + d.name + '&#60;' + '/i></textarea>' + '</td>';
+          tr += '<td><textarea class="codesnippet">' + '&#60;' + 'i class="material-icons">&#38;#xE' + d.code.slice(1) + '&#60;' + '/i></textarea>' + '</td>';
+          tr += '<td><textarea class="codesnippet">content: "&#92;' + d.code + '";</textarea>' + '</td>';
+          tr += '<td><textarea class="codesnippet">&#x' + d.code + '</textarea></td>'
+
+          tr += '</tr>';
+          $('tbody').append(tr);
+
+        })
+      }
+    </script>
+  </body>
+</html>
