@@ -6,33 +6,116 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: sans-serif;
+        font-size: 14px;
+        margin: 0;
+      }
+      header {
+        padding: 15px 30px;
+        position: fixed;
+        background: white;
+        width: 100%;
+        top: 0;
+      }
+      h1 {
+        margin-top: 0;
+      }
+      .icon-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 15px 30px;
+        background: #0d47a1;
+      }
+      .icon-wrapper div {
+        width: 80px;
+        height: 80px;
+        background: #f8f8f8;
+        text-align: center;
+        margin: 7px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      .icon-wrapper div:hover {
+        border: 4px solid #ffee55;
+      }
+      .icon-wrapper div.selected {
+        border: 4px solid #eeaa33;
+        background: white;
+      }
+      .icon-wrapper div .material-icons {
+        font-size: 36px;
+      }
+
+      .hint {
+        display: flex;
+      }
+      .hint .half {
+        margin-right: 30px;
+      }
+
+      .hint label {
+        display: block;
+        margin: 10px 0;
+      }
+
+      .hint textarea{
+        padding: 4px;
+        border: 2px solid #aaa;
+        background-color: #e0e7ec;
+        font-family: monospace;
+        font-size: 1em;
+        resize: none;
+      }
+
+      .hint textarea:not(.copy) {
+        margin-bottom: 10px;
+      }
+
+      .hint textarea:focus {
+        outline: none;
+        border: 2px solid #eeaa33;
+        background-color: #fff;
+      }
+    </style>
   </head>
   <body>
-    <table>
-      <thead>
-        <th>
-          Name
-        </th>
-        <th>
-          Icon
-        </th>
-        <th>
-          HTML (Modern)
-        </th>
-        <th>
-          HTML (IE9 and below)
-        </th>
-        <th>
-          CSS
-        </th>
-        <th>
-          Copy-Paste in Drawing Tool
-        </th>
-      </thead>
-      <tbody>
+    <header>
+      <h1>Material Icons Cheatsheet</h1>
+      <p>You can use '⌘ + F' to search for icon names.</p>
+      <div class="hint">
+        <div class="half">
+          <label>
+            Copy-Paste In Drawing Tools:
+            <textarea readonly cols="1" rows='1' class="copy"></textarea>
+          </label>
+          <label>
+            Insert Icon Through CSS:
+          </label>
+          <textarea readonly rows="4" cols="35" class="css"></textarea>
+        </div>
+        <div class="half">
+          <label>
+            HTML (Using Ligatures in Modern Browsers):
+          </label>
+          <textarea readonly cols="80" rows="1" class="html"></textarea>
+          <label>
+            HTML (Using HTML Entity in IE9'n Below):
+          </label>
+          <textarea readonly cols="80" rows="1" class="ie9"></textarea>
+          </div>
+        </div>
+    </header>
+    <section class="icon-wrapper"></section>
 
-      </tbody>
-    </table>
     <script type="text/javascript">
       $(function(){
         $.ajax({
@@ -41,8 +124,13 @@
           dataType: 'text',
           success: function(data) {
             data = txtToJSON(data);
-            showTable(data);
+            showIcons(data);
           }
+        }).done(function(){
+          $('.icon-wrapper div').on('click', function(){
+            $(this).siblings().removeClass('selected');
+            $(this).addClass('selected').showHint();
+          });
         });
       });
 
@@ -57,22 +145,34 @@
         return data.slice(0, data.length - 1);
       }
 
-      var showTable = function(dataArray){
+      var showIcons = function(dataArray){
+        $('.icon-wrapper').css({'margin-top': $('header').height() + 30});
         dataArray.forEach(function(d){
-          var tr = '<tr>';
-
-          tr += '<td>' + d.name + '</td>';
-          tr += '<td><i class="material-icons">' + d.name + '</i></td>';
-          tr += '<td><textarea class="codesnippet">' + '&#60;' + 'i class="material-icons">' + d.name + '&#60;' + '/i></textarea>' + '</td>';
-          tr += '<td><textarea class="codesnippet">' + '&#60;' + 'i class="material-icons">&#38;#xE' + d.code.slice(1) + '&#60;' + '/i></textarea>' + '</td>';
-          tr += '<td><textarea class="codesnippet">content: "&#92;' + d.code + '";</textarea>' + '</td>';
-          tr += '<td><textarea class="codesnippet">&#x' + d.code + '</textarea></td>'
-
-          tr += '</tr>';
-          $('tbody').append(tr);
-
+          var icon = `
+          <div data-code=${d.code} data-name=${d.name}>
+            <i class="material-icons dp48">${d.name}</i>
+          </div>
+          `;
+          $('.icon-wrapper').append(icon);
         })
       }
+
+      $.fn.extend({
+        showHint: function(){
+          var copy_txt = `&#x${this.data('code')}`,
+              css_txt =
+`span:before {
+   font-family: 'Material Icons';
+   content: '&#92;${this.data('code')}'
+ }`,
+              html_txt = `<i class='material-icons'>${this.data('name')}</i>`,
+              ie9_txt = `<i class='material-icons'>&#38;#x${this.data('code')}</i>`;
+          $('.hint .copy').html(copy_txt);
+          $('.hint .css').html(css_txt);
+          $('.hint .html').html(html_txt);
+          $('.hint .ie9').html(ie9_txt);
+        }
+      });
     </script>
   </body>
 </html>
