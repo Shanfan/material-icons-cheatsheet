@@ -10,7 +10,7 @@ var txtToJSON = function(txt){
 }
 
 var showIcons = function(dataArray){
-	$('.icon-wrapper').css({'margin-top': $('header').height() + 65});
+
 	dataArray.forEach(function(d){
 		var icon = `
 		<div data-code=${d.code} data-name=${d.name}>
@@ -42,10 +42,19 @@ $.fn.extend({
 		var txt = this.val();
 		if (txt) {
 				this.select();
-				// document.execCommand('copy');
-				// this.next().animate({'opacity': 1}, 300, function(){
-				// 	$(this).delay(800).animate({'opacity': 0});
-				// });
+		}
+	},
+	filterIcons: function(){
+		var icons = $('.icon-wrapper div'),
+				query = new RegExp(this.val(), "gi");
+
+		if (!this.val()){
+			icons.show();
+		} else {
+			icons.hide().filter(function(index){
+				var str = $(this).data('name');
+				return str.match(query);
+			}).show();
 		}
 	}
 });

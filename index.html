@@ -49,8 +49,11 @@
     </header>
     <section class="icon-wrapper"></section>
     <script type="text/javascript">
+      $('.icon-wrapper').css({'margin-top': $('header').height() + 65});
+
       $(function(){
         'use strict';
+
         $.ajax({
           url: "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/codepoints",
           type: 'GET',
@@ -70,18 +73,7 @@
           });
 
           $('#search').keyup(function(){
-            var $icons = $('.icon-wrapper div'),
-                query = new RegExp($(this).val(), "gi");
-
-            if (!$(this).val()){
-              $icons.show();
-            } else {
-              $icons.hide().filter(function(index){
-                var str = $(this).data('name');
-                return str.match(query);
-              }).show();
-            }
-
+            $(this).filterIcons();
           });
 
         });
