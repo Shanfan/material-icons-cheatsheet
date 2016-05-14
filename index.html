@@ -70,7 +70,6 @@
           });
 
           $('#search').keyup(function(){
-
             var $icons = $('.icon-wrapper div'),
                 query = new RegExp($(this).val(), "gi");
 
@@ -79,7 +78,7 @@
             } else {
               $icons.hide().filter(function(index){
                 var str = $(this).data('name');
-                return query.test(str);
+                return str.match(query);
               }).show();
             }
 
