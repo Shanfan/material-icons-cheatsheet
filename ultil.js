@@ -26,8 +26,8 @@ $.fn.extend({
 		var copy_txt = `&#x${this.data('code')}`,
 				css_txt =
 `span:before {
-	font-family: 'Material Icons';
-	content: '&#92;${this.data('code')}'
+  font-family: 'Material Icons';
+  content: '&#92;${this.data('code')}'
 }`,
 				html_txt = `<i class='material-icons'>
   ${this.data('name')}
@@ -42,10 +42,10 @@ $.fn.extend({
 		var txt = this.val();
 		if (txt) {
 				this.select();
-				document.execCommand('copy');
-				this.next().animate({'opacity': 1}, 300, function(){
-					$(this).delay(800).animate({'opacity': 0});
-				});
+				// document.execCommand('copy');
+				// this.next().animate({'opacity': 1}, 300, function(){
+				// 	$(this).delay(800).animate({'opacity': 0});
+				// });
 		}
 	}
 });
