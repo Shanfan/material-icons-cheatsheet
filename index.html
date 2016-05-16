@@ -10,7 +10,7 @@
     <script type="text/javascript" src="ultil.js"></script>
   </head>
   <body>
-    <p class='disclaimer'>Only tested with Chrome on Mac. Not optimized for mobile. You can use '⌘ + F' to search for icon names. You can help <a href="https://github.com/Shanfan/material-icons-cheatsheet">this project</a> by adding keywords to the icons, to help better search and filter.</p>
+    <p class='disclaimer'>Only tested with Chrome on Mac. Not optimized for mobile. You can help <a href="https://github.com/Shanfan/material-icons-cheatsheet">this project</a> by adding <a href="https://github.com/Shanfan/material-icons-cheatsheet/blob/master/keywords">keywords</a> to the icons, making filtering search easier.</p>
     <header>
       <div class="title">
         <h1>Material Icons Cheatsheet</h1>
@@ -24,36 +24,29 @@
             Copy-Paste in Drawing Tools:
           </label>
           <textarea readonly rows='1' cols="40" class="copy"></textarea>
-          <span>Copied to your clipboard!</span>
 
           <label>
             Insert Icon in CSS:
           </label>
           <textarea readonly rows="4" cols="40" class="css"></textarea>
-          <span>Copied to your clipboard!</span>
         </div>
         <div class="col">
           <label>
             Using HTML Entity in IE9'n Below:
           </label>
           <textarea readonly cols="40" rows="1" class="ie9"></textarea>
-          <span>Copied to your clipboard!</span>
 
           <label>
             Using Ligatures in Modern Browsers:
           </label>
           <textarea readonly cols="40" rows="4" class="html"></textarea>
-          <span>Copied to your clipboard!</span>
         </div>
       </div>
     </header>
     <section class="icon-wrapper"></section>
     <script type="text/javascript">
-      $('.icon-wrapper').css({'margin-top': $('header').height() + 65});
 
       $(function(){
-        'use strict';
-
         $.ajax({
           url: "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/codepoints",
           type: 'GET',
@@ -68,15 +61,30 @@
             $(this).addClass('selected').showHint();
           });
 
-          $('textarea').on('click', function(){
-            $(this).toClipboard();
-          });
-
-          $('#search').keyup(function(){
-            $(this).filterIcons();
+          $.ajax({
+            url: "keywords",
+            type: 'GET',
+            dataType: 'text',
+            success: function(data) {
+              data = txtToJSON(data);
+              tagKeywords(data);
+            }
+          }).done(function(){
+            $('#search').keyup(function(){
+              $(this).filterIcons();
+            });
           });
 
         });
+
+        $('.icon-wrapper').css({'margin-top': $('header').height() + 65});
+
+        $('textarea').on('click', function(){
+          if ($(this).val()){
+            $(this).select();
+          }
+        });
+
       });
     </script>
   </body>

@@ -141,12 +141,3 @@ input#search:focus {
   border: 2px solid #eeaa33;
   background-color: #fff;
 }
-.hint textarea + span {
-  display: block;
-  font-size: 0.85em;
-  color: white;
-  background: #eeaa33;
-  border-radius: 2px;
-  padding: 2px 5px;
-  opacity: 0;
-}

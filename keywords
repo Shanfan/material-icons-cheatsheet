@@ -1,5 +1,4 @@
-3d_rotation
-ac_unit snow,winter
+ac_unit snow,winter,cold
 access_alarm clock,time
 access_alarms clock,time
 access_time clock
@@ -11,6 +10,13 @@ add plus,increase
 add_a_photo camera,picture
 add_box plus
 add_circle plus
+airport_shuttle bus
+adjust target
+airline_seat_flat_angled bed,sleep
+airline_seat_flat bed,sleep
+airline_seat_individual_suite bed,sleep
+hotel bed,sleep
+local_hotel bed
 arrow_back left
 arrow_downward down
 arrow_forward right
@@ -72,3 +78,4 @@ receipt record,summary,document,file
 school degree,diploma
 settings setup,config,gear,cog
 settings_applications setup,config,gear,cog
+toys windmill

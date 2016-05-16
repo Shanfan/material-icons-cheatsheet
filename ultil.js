@@ -21,6 +21,14 @@ var showIcons = function(dataArray){
 	})
 }
 
+var tagKeywords = function(dataArray) {
+	dataArray.forEach(function(d){
+		var target = $(`.icon-wrapper div[data-name = ${d.name}]`),
+				keywords = target.data('keywords') ? target.data('keywords') + d.code : d.code;
+		target.attr('data-keywords', keywords);
+	});
+}
+
 $.fn.extend({
 	showHint: function(){
 		var copy_txt = `&#x${this.data('code')}`,
@@ -29,20 +37,16 @@ $.fn.extend({
   font-family: 'Material Icons';
   content: '&#92;${this.data('code')}'
 }`,
-				html_txt = `<i class='material-icons'>
+				html_txt =
+`<i class='material-icons'>
   ${this.data('name')}
 </i>`,
 				ie9_txt = `<i class='material-icons'>&#38;#x${this.data('code')}</i>`;
+
 		$('.hint .copy').html(copy_txt);
 		$('.hint .css').html(css_txt);
 		$('.hint .html').html(html_txt);
 		$('.hint .ie9').html(ie9_txt);
-	},
-	toClipboard: function(){
-		var txt = this.val();
-		if (txt) {
-				this.select();
-		}
 	},
 	filterIcons: function(){
 		var icons = $('.icon-wrapper div'),
@@ -52,8 +56,9 @@ $.fn.extend({
 			icons.show();
 		} else {
 			icons.hide().filter(function(index){
-				var str = $(this).data('name');
-				return str.match(query);
+				var str = $(this).data('name'),
+						tag = $(this).data('keywords') ? $(this).data('keywords') : '';
+				return str.match(query) || tag.match(query);
 			}).show();
 		}
 	}
