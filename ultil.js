@@ -1,3 +1,44 @@
+$(function(){
+	$.ajax({
+		url: "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/codepoints",
+		type: 'GET',
+		dataType: 'text',
+		success: function(data) {
+			data = txtToJSON(data);
+			showIcons(data);
+		}
+	}).done(function(){
+		$('.icon-wrapper div').on('click', function(){
+			$(this).siblings().removeClass('selected');
+			$(this).addClass('selected').showHint();
+		});
+
+		$.ajax({
+			url: "keywords",
+			type: 'GET',
+			dataType: 'text',
+			success: function(data) {
+				data = txtToJSON(data);
+				tagKeywords(data);
+			}
+		}).done(function(){
+			$('#search').keyup(function(){
+				$(this).filterIcons();
+			});
+		});
+
+	});
+
+	$('.icon-wrapper').css({'margin-top': $('header').height() + 65});
+
+	$('textarea').on('click', function(){
+		if ($(this).val()){
+			$(this).select();
+		}
+	});
+
+});
+
 var txtToJSON = function(txt){
 	var pairArray = txt.split('\n');
 	var data = [];

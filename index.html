@@ -2,6 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="description" content="Material Icons Cheatsheet">
+    <meta name="keywords" content="Material,Design,Icons,Cheatsheet,Web">
+    <meta name="author" content="Shanfan Huang">
     <title>Material Icons Cheatsheet</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
@@ -44,48 +47,5 @@
       </div>
     </header>
     <section class="icon-wrapper"></section>
-    <script type="text/javascript">
-
-      $(function(){
-        $.ajax({
-          url: "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/codepoints",
-          type: 'GET',
-          dataType: 'text',
-          success: function(data) {
-            data = txtToJSON(data);
-            showIcons(data);
-          }
-        }).done(function(){
-          $('.icon-wrapper div').on('click', function(){
-            $(this).siblings().removeClass('selected');
-            $(this).addClass('selected').showHint();
-          });
-
-          $.ajax({
-            url: "keywords",
-            type: 'GET',
-            dataType: 'text',
-            success: function(data) {
-              data = txtToJSON(data);
-              tagKeywords(data);
-            }
-          }).done(function(){
-            $('#search').keyup(function(){
-              $(this).filterIcons();
-            });
-          });
-
-        });
-
-        $('.icon-wrapper').css({'margin-top': $('header').height() + 65});
-
-        $('textarea').on('click', function(){
-          if ($(this).val()){
-            $(this).select();
-          }
-        });
-
-      });
-    </script>
   </body>
 </html>
