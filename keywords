@@ -73,6 +73,11 @@ local_dining restaurant,eat,food,silverware
 navigation_before left,arrow
 navigation_next right,arrow
 pan_tool hand
+person user,profile
+person_add user
+person_outline user,profile
+person_pin user,pin
+person_pin_circle user,pin,map,location
 personal_video monitor
 publish arrow,up
 public globe,earth,map
