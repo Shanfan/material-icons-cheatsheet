@@ -4,6 +4,8 @@ access_alarms clock,time
 access_time clock
 accessibility persona
 accessible disability
+account_box user,profile
+account_circle user,profile
 account_balance bank,federal,institution
 adb android,bot,bug,bee
 add plus,increase
