@@ -1,3 +1,7 @@
+# This project is no longer maintained
+Thank you for visting this repo. Since Google has made significant updates to its icon library, this cheatsheet is no longer relevant. Please consult https://fonts.google.com/icons directly.
+
+
 # Material Icons Cheatsheet
 ## Making Copy-Paste Easy
 
@@ -25,5 +29,3 @@ account_balance bank,federal,institution
 ## [Use the cheatsheet here.](https://shanfan.github.io/material-icons-cheatsheet/)
 
 To use the icon font in a drawing tool like Photoshop, you need to install the font in your Font Book first. Once you pasted the icon, you can treat it as other text content, just set the font to be "Material Icons".
-
-<!-- The [icon font from Google's repo](https://github.com/google/material-design-icons/tree/master/iconfont) doesn't seem to be compatible with Mac's Font Book. I downloaded the icon font from somewhere else. -->

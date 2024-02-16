@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!--<meta charset="utf-8">-->
-    <meta name="description" content="Material Icons Cheatsheet">
-    <meta name="keywords" content="Material,Design,Icons,Cheatsheet,Web">
-    <meta name="author" content="Shanfan Huang">
-    <title>Material Icons Cheatsheet</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="ultil.js"></script>
-  </head>
-  <body>
-    <p class='disclaimer'>Only tested with Chrome on Mac. Not optimized for mobile. You can help <a href="https://github.com/Shanfan/material-icons-cheatsheet">this project</a> by adding <a href="https://github.com/Shanfan/material-icons-cheatsheet/blob/master/keywords">keywords</a> to the icons, making filtering search easier.</p>
-    <header>
-      <div class="title">
-        <h1>Material Icons Cheatsheet</h1>
-        <div class="search">
-          <input type="text" placeholder="Filter icons by name or keywords" id="search">
-        </div>
-      </div>
-      <div class="hint">
-        <div class="col">
-          <label>
-            Copy-Paste in Drawing Tools:
-          </label>
-          <textarea readonly rows='1' cols="40" class="copy"></textarea>
 
-          <label>
-            Insert Icon in CSS:
-          </label>
-          <textarea readonly rows="4" cols="40" class="css"></textarea>
-        </div>
-        <div class="col">
-          <label>
-            Use HTML Entity in IE9'n Below:
-          </label>
-          <textarea readonly cols="40" rows="1" class="ie9"></textarea>
+<head>
+  <!--<meta charset="utf-8">-->
+  <meta name="description" content="Material Icons Cheatsheet">
+  <meta name="keywords" content="Material,Design,Icons,Cheatsheet,Web">
+  <meta name="author" content="Shanfan Huang">
+  <title>Material Icons Cheatsheet</title>
+  <link rel="stylesheet" href="font/icons.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- <script src="https://code.jquery.com/jquery-2.2.3.min.js"
+    integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script> -->
+  <script src="lib/jquery-2.2.3.min.js"></script>
+  <script type="text/javascript" src="ultil.js"></script>
+</head>
 
-          <label>
-            Use Ligatures in Modern Browsers:
-          </label>
-          <textarea readonly cols="40" rows="4" class="html"></textarea>
-        </div>
+<body>
+  <p class='disclaimer'>Only tested with Chrome on Mac. Not optimized for mobile. You can help <a
+      href="https://github.com/Shanfan/material-icons-cheatsheet">this project</a> by adding <a
+      href="https://github.com/Shanfan/material-icons-cheatsheet/blob/master/keywords">keywords</a> to the icons, making
+    filtering search easier.</p>
+  <header>
+    <div class="title">
+      <h1>Material Icons Cheatsheet</h1>
+      <div class="search">
+        <input type="text" placeholder="Filter icons by name or keywords" id="search">
       </div>
-    </header>
-    <section class="icon-wrapper"></section>
-  </body>
+    </div>
+    <div class="hint">
+      <div class="col">
+        <label>
+          Copy-Paste in Drawing Tools:
+        </label>
+        <textarea readonly rows='1' cols="40" class="copy"></textarea>
+
+        <label>
+          Insert Icon in CSS:
+        </label>
+        <textarea readonly rows="4" cols="40" class="css"></textarea>
+      </div>
+      <div class="col">
+        <label>
+          Use HTML Entity in IE9'n Below:
+        </label>
+        <textarea readonly cols="40" rows="1" class="ie9"></textarea>
+
+        <label>
+          Use Ligatures in Modern Browsers:
+        </label>
+        <textarea readonly cols="40" rows="4" class="html"></textarea>
+      </div>
+    </div>
+  </header>
+  <section class="icon-wrapper"></section>
+</body>
+
 </html>
